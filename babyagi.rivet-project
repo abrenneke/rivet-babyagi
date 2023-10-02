@@ -1,0 +1,494 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    0cpjV0r3qU7z5h4FzgkWd:
+      metadata:
+        description: ""
+        id: 0cpjV0r3qU7z5h4FzgkWd
+        name: "* BabyAGI"
+      nodes:
+        '[3VeGhiEl05MM8ezv_e-LU]:ifElse "If/Else"':
+          outgoingConnections:
+            - output->"Main Loop" w3wG-Wb1ZJ2FB4tasJYUT/continue
+          visualData: 1049.1828184427366/393.3742433837201/205/null
+        '[73G2aggR1JvdwRlGn-dIS]:text "Text"':
+          data:
+            text: results_storage_{{rng}}
+          outgoingConnections:
+            - output->"Create Dataset" pzkeXOEbVO8SRpol3UTVl/datasetName
+          visualData: -1524.653152582464/-342.5880737450717/243.87890162093413/89
+        '[BAmp9MxLnWi8pNZ22wHQL]:text "Objective"':
+          data:
+            text: Solve world hunger
+          outgoingConnections:
+            - output->"Execution Agent" IUdCmRi_lR4a4rx9J5heY/objective
+            - output->"Task Creation Agent" wI6LS6sVd0ZgSc98-H6dk/objective
+          visualData: -950.5574358853819/-871.1171955482678/330/73
+        '[H_kE8dps8roKiTM7D8tcB]:randomNumber "RNG"':
+          data:
+            integers: true
+            max: 9999
+            maxInclusive: true
+            min: 0
+          outgoingConnections:
+            - value->"Text" 73G2aggR1JvdwRlGn-dIS/rng
+          visualData: -1768.710591523089/-382.1132373972977/180/89
+        '[IMmh34SEpxXe_JEM-ajlY]:appendToDataset "Append to Dataset"':
+          data:
+            datasetId: ""
+            useDatasetIdInput: true
+          visualData: 3113.716013278021/53.524190027884046/280/91
+        '[IUdCmRi_lR4a4rx9J5heY]:subGraph "Execution Agent"':
+          data:
+            graphId: 69-StbKA4NV9QeXQZ_voS
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - output->"Array" KfjTVp-X2A8txNg5HzgVP/input2
+            - output->"Get Embedding" bE-U68mehK7amOpmEhHjz/input
+            - output->"Task Creation Agent" wI6LS6sVd0ZgSc98-H6dk/last_result
+          visualData: 1800.4344193223449/47.54616160920734/330/82
+        '[KfjTVp-X2A8txNg5HzgVP]:array "Array"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Append to Dataset" IMmh34SEpxXe_JEM-ajlY/data
+          visualData: 2724/68/230/92
+        '[KvXe4BqJLfNSE6lPKjYDj]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: initial_task
+            useDefaultValueInput: true
+          outgoingConnections:
+            - data->"Object" ZXUxEfYSKQSjZutxLe0Xn/input
+          visualData: -2486.8099511500536/-15.663306024948925/330/89
+        '[PNtW8uMj9ws1bH6NaDm4S]:text "Initial Task"':
+          data:
+            text: Develop a task list
+          outgoingConnections:
+            - output->"Graph Input" KvXe4BqJLfNSE6lPKjYDj/default
+          visualData: -2891.0897050977637/-13.196666338427804/330/89
+        '[RVrrFhya0ycNlc79ko65T]:boolean "Bool"':
+          data:
+            value: false
+          outgoingConnections:
+            - value->"If/Else" 3VeGhiEl05MM8ezv_e-LU/true
+          visualData: 732.0554484463299/328.70013667720724/160/87
+        '[Z4NJN0zW4r0rIrhxNz-LE]:boolean "Bool"':
+          data:
+            value: true
+          outgoingConnections:
+            - value->"If/Else" 3VeGhiEl05MM8ezv_e-LU/false
+          visualData: 732.0554484463299/528.7001366772072/160/87
+        '[ZXUxEfYSKQSjZutxLe0Xn]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "task_id": 1,
+                "task_name": "{{input}}"
+                
+              }
+          outgoingConnections:
+            - output->"Tasks (Empty)" a1sA1vRN65t7HofCvR184/input1
+          visualData: -2039.6174091898147/-31.133998744190812/230/89
+        '[a1sA1vRN65t7HofCvR184]:array "Tasks (Empty)"':
+          data:
+            flatten: true
+            flattenDeep: false
+          outgoingConnections:
+            - output->"Main Loop" w3wG-Wb1ZJ2FB4tasJYUT/input1Default
+          visualData: -1693.2940173188192/14.660595072028407/302/89
+        '[aCTczGE36kj4mROTmloDA]:pop "Pop"':
+          data:
+            fromFront: true
+          outgoingConnections:
+            - lastItem->"Extract Object Path" w_BLl0zikUBav0CHicd0E/object
+          visualData: 988/16/230/46
+        '[bE-U68mehK7amOpmEhHjz]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"Append to Dataset" IMmh34SEpxXe_JEM-ajlY/embedding
+          visualData: 2286.6319475760893/271.1458932021076/230/79
+        '[ees-UI0Zq5tisL36xfan7]:if "If"':
+          outgoingConnections:
+            - falseOutput->"If/Else" 3VeGhiEl05MM8ezv_e-LU/if
+            - output->"Pop" aCTczGE36kj4mROTmloDA/array
+          visualData: 772/17/155/45
+        '[h0xxXrAIOTufpDoBYRyQY]:number "Number"':
+          data:
+            round: false
+            roundTo: 0
+            value: 1
+          outgoingConnections:
+            - value->"Evaluate" jdTmb4XZ6q9BlDFaWazq2/b
+          visualData: 739/814/230/53
+        '[jdTmb4XZ6q9BlDFaWazq2]:evaluate "Evaluate"':
+          data:
+            operation: +
+          visualData: 1061/783/205/51
+        '[pzkeXOEbVO8SRpol3UTVl]:createDataset "Create Dataset"':
+          outgoingConnections:
+            - datasetId_out->"Append to Dataset" IMmh34SEpxXe_JEM-ajlY/datasetId
+            - datasetId_out->"Execution Agent"
+              IUdCmRi_lR4a4rx9J5heY/results_dataset_id
+          visualData: -1115.3999861483542/-358.25570531082553/280/89
+        '[w3wG-Wb1ZJ2FB4tasJYUT]:loopController "Main Loop"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - output1->"If" ees-UI0Zq5tisL36xfan7/if
+            - output1->"If" ees-UI0Zq5tisL36xfan7/value
+            - output1->"Task Creation Agent" wI6LS6sVd0ZgSc98-H6dk/all_tasks
+            - output2->"Evaluate" jdTmb4XZ6q9BlDFaWazq2/a
+          visualData: -556.374618783027/218.12613842399466/485.21866639788874/90
+        '[wI6LS6sVd0ZgSc98-H6dk]:subGraph "Task Creation Agent"':
+          data:
+            graphId: Z3VH3GOaoZdp0NkSae2zz
+            useAsGraphPartialOutput: false
+            useErrorOutput: false
+          outgoingConnections:
+            - new_tasks->"Main Loop" w3wG-Wb1ZJ2FB4tasJYUT/input1
+          visualData: 3222.6127067599155/379.7229091809033/330/88
+        '[w_BLl0zikUBav0CHicd0E]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.task_name
+            usePathInput: false
+          outgoingConnections:
+            - match->"Array" KfjTVp-X2A8txNg5HzgVP/input1
+            - match->"Execution Agent" IUdCmRi_lR4a4rx9J5heY/task_name
+            - match->"Task Creation Agent" wI6LS6sVd0ZgSc98-H6dk/last_task_name
+          visualData: 1324.7818117693814/113.04778545513048/280/71
+        '[z5Iqv5W4IUeiH7CmbpOBK]:number "Task ID Counter (initial)"':
+          data:
+            round: false
+            roundTo: 0
+            value: 0
+          outgoingConnections:
+            - value->"Main Loop" w3wG-Wb1ZJ2FB4tasJYUT/input2Default
+          visualData: -1683.2940173188192/253.6605950720284/230/89
+    69-StbKA4NV9QeXQZ_voS:
+      metadata:
+        description: ""
+        id: 69-StbKA4NV9QeXQZ_voS
+        name: Execution Agent
+      nodes:
+        '[IUD_YdnW587NtjVBl3Ugf]:getEmbedding "Get Embedding"':
+          data:
+            integration: openai
+            useIntegrationInput: false
+          outgoingConnections:
+            - embedding->"KNN Dataset" rXZILdM8_ZrUrNklqmbRE/embedding
+          visualData: 279.3277027269048/686.4644622039945/230/25
+        '[LXtmkym86RVxbHVl4TOkG]:text "Text"':
+          data:
+            text: |-
+              Take into account these previously completed tasks:
+
+              {{completed_tasks}}
+          outgoingConnections:
+            - output->"If/Else" lPXC94KwLq8jsaZxnCAWR/true
+          visualData: 1827/778/330/17
+        '[P-cAgLeTQDnD_RWUcTrNu]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: 3234.7094523643627/663.2214765713438/330/23
+        '[WzYgRqtzc4SH43Lqe42ym]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: task_name
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" immKlIgl2tA2e7i0kSk4o/task
+          visualData: -103.67229727309518/641.4644622039945/330/25
+        '[ZHGj5t4JMXqz-1W_VPC0t]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: results_dataset_id
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"KNN Dataset" rXZILdM8_ZrUrNklqmbRE/datasetId
+          visualData: -103.67229727309518/841.4644622039945/330/25
+        '[b3RBLGbFBKJ-Hl9PUfq6c]:text "Text"':
+          data:
+            text: "- {{completed_task}}"
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Text" LXtmkym86RVxbHVl4TOkG/completed_tasks
+          visualData: 1512.0062000512658/933.9206576729679/197/26
+        '[cC0DX0zXlD18LPlh0c_kM]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: objective
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Get Embedding" IUD_YdnW587NtjVBl3Ugf/input
+            - data->"Text" immKlIgl2tA2e7i0kSk4o/objective
+          visualData: -103.67229727309518/441.4644622039944/330/25
+        '[fXi46nAecpwZ5BOkqufXd]:text "Text"':
+          data:
+            text: ""
+          outgoingConnections:
+            - output->"If/Else" lPXC94KwLq8jsaZxnCAWR/false
+          visualData: 1824.0179381121627/1012.4035743549471/330/24
+        '[immKlIgl2tA2e7i0kSk4o]:text "Text"':
+          data:
+            text: |-
+              Perform one task based on the following objective: {{objective}}.
+
+              {{completed_tasks}}
+
+              Your task: {{task}}
+
+              Response:
+          outgoingConnections:
+            - output->"Chat" xIyH0a5nQtXdko9JZnpwb/prompt
+          visualData: 2495/556/330/21
+        '[lPXC94KwLq8jsaZxnCAWR]:ifElse "If/Else"':
+          outgoingConnections:
+            - output->"Text" immKlIgl2tA2e7i0kSk4o/completed_tasks
+          visualData: 2201/790/205/18
+        '[rXZILdM8_ZrUrNklqmbRE]:datasetNearestNeighbors "KNN Dataset"':
+          data:
+            datasetId: ""
+            k: 5
+            useDatasetIdInput: true
+          outgoingConnections:
+            - nearestNeighbors->"Extract Object Path"
+              s90HxDmpMwI_lIqMNA5CH/object
+            - nearestNeighbors->"If/Else" lPXC94KwLq8jsaZxnCAWR/if
+          visualData: 567.3277027269048/789.4644622039945/280/25
+        '[s90HxDmpMwI_lIqMNA5CH]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.data[0]
+            usePathInput: false
+          isSplitRun: true
+          outgoingConnections:
+            - match->"Text" b3RBLGbFBKJ-Hl9PUfq6c/completed_task
+          visualData: 1116.4538131646284/969.0624594999007/280/27
+        '[xIyH0a5nQtXdko9JZnpwb]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Graph Output" P-cAgLeTQDnD_RWUcTrNu/value
+          visualData: 2918.6759237783044/615.1516518349531/230/22
+    Z3VH3GOaoZdp0NkSae2zz:
+      metadata:
+        description: ""
+        id: Z3VH3GOaoZdp0NkSae2zz
+        name: Task Creation Agent
+      nodes:
+        '[-E34xU4Fhy1WW27UPGsqE]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Extract Regex" izlKw2QQBSBQUqAcpiq46/input
+          visualData: 2296.6487306092863/587.3807639480608/230/18
+        '[-gNnFvtGn10Yj8Ncmhb09]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: last_task_name
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" oNtXhZtjg46-F8WIZ1sfY/task_description
+          visualData: -735.8297547349731/805.6732086459228/330/31
+        '[1deHEinupUk_kHuI_JmZx]:if "If"':
+          outgoingConnections:
+            - output->"Extract Object Path" WWSAj-jeBn1wAAw0W85wC/object
+            - output->"If/Else" OECaqBzVcDVLolsnS7fIU/if
+          visualData: -120.63372606383666/1185.2549064844422/155/32
+        '[3OC-eW1YK9ZCFJzyNHHKa]:text "Text"':
+          data:
+            text: "These are incomplete tasks: {{tasks}}"
+          outgoingConnections:
+            - output->"If/Else" XXp_d02RvHNsahK5xh81n/true
+          visualData: 936/1190/330/8
+        '[7Zs0HJDNtVwSCxnYiu1CP]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            id: last_result
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" oNtXhZtjg46-F8WIZ1sfY/result
+          visualData: -735.8297547349731/605.6732086459228/330/31
+        '[81ErN7aN8-xKy_BFqd6CR]:join "Join"':
+          data:
+            flatten: true
+            joinString: ","
+          outgoingConnections:
+            - output->"Text" 3OC-eW1YK9ZCFJzyNHHKa/tasks
+          visualData: 548.5578131174907/1197.9084891925963/180/34
+        '[IjnNbPLw26rZapKcLZ0LN]:graphInput "Graph Input"':
+          data:
+            dataType: string
+            defaultValue: Solve world hunger
+            id: objective
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"Text" oNtXhZtjg46-F8WIZ1sfY/objective
+          visualData: -735.8297547349731/405.67320864592284/330/31
+        '[JxC68q0iWVxbWNyG9km0I]:text "Text"':
+          data:
+            text: These new tasks must not overlap with incomplete tasks.
+          outgoingConnections:
+            - output->"If/Else" OECaqBzVcDVLolsnS7fIU/true
+          visualData: 806/1373/330/14
+        '[OECaqBzVcDVLolsnS7fIU]:ifElse "If/Else"':
+          outgoingConnections:
+            - output->"Text" oNtXhZtjg46-F8WIZ1sfY/incomplete_tasks_overlap
+          visualData: 1498/1167/205/15
+        '[QKPJbclBiDvssqAHdpSrM]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            multilineMode: false
+            regex: ^(\d+)\. (.+)
+            useRegexInput: false
+          isSplitRun: true
+          outgoingConnections:
+            - output1->"Object" nTgW6CuXer0E0FnWU5wz8/task_id
+            - output2->"Object" nTgW6CuXer0E0FnWU5wz8/task_name
+          splitRunMax: 99
+          visualData: 2933.318692154629/649.1431469619972/280/27
+        '[UAejZjWz6E2auyVuivZjI]:text "Text"':
+          data:
+            text: ""
+          outgoingConnections:
+            - output->"If/Else" OECaqBzVcDVLolsnS7fIU/false
+            - output->"If/Else" XXp_d02RvHNsahK5xh81n/false
+          visualData: 933/1043/330/12
+        '[WWSAj-jeBn1wAAw0W85wC]:extractObjectPath "Extract Object Path"':
+          data:
+            path: $.task_name
+            usePathInput: false
+          isSplitRun: true
+          outgoingConnections:
+            - match->"Join" 81ErN7aN8-xKy_BFqd6CR/input1
+          splitRunMax: 99
+          visualData: 230.2071206521238/1182.8755140151966/280/33
+        '[XXp_d02RvHNsahK5xh81n]:ifElse "If/Else"':
+          outgoingConnections:
+            - output->"Text" oNtXhZtjg46-F8WIZ1sfY/incomplete_tasks
+          visualData: 1490/934/205/11
+        '[izlKw2QQBSBQUqAcpiq46]:extractRegex "Extract Regex"':
+          data:
+            errorOnFailed: false
+            multilineMode: true
+            regex: ^(\d+\. .+)
+            useRegexInput: false
+          outgoingConnections:
+            - matches->"Extract Regex" QKPJbclBiDvssqAHdpSrM/input
+          visualData: 2583.5062032592455/630.6158374469744/280/25
+        '[nTgW6CuXer0E0FnWU5wz8]:object "Object"':
+          data:
+            jsonTemplate: |-
+              {
+                "task_id": "{{task_id}}",
+                "task_name": "{{task_name}}"
+              }
+          isSplitRun: true
+          outgoingConnections:
+            - output->"Graph Output" xnqnn0Cl_t6EjjVI1tLCN/value
+          splitRunMax: 99
+          visualData: 3333.1513480893323/589.5075721005013/230/28
+        '[oNtXhZtjg46-F8WIZ1sfY]:text "Text"':
+          data:
+            text: >-
+              You are to use the result from an execution agent to create new
+              tasks with the following objective: {{objective}}. The last
+              completed task has the result:
+
+              {{result}}
+
+              This result was based on this task description: {{task_description}}
+
+              {{incomplete_tasks}}
+
+              Based on the result, return a list of tasks to be completed in order to meet the objective. {{incomplete_tasks_overlap}}
+
+              Return one task per line in your response. The result must be a numbered list in the format:
+
+
+              #. First task
+
+              #. Second Task
+
+
+              The number of each entry must be followed by a period. If your list is empty, write "There are no tasks to add at this time."
+
+              Unless your list is empty, do not include any headers before your numbered list or follow your numbered list with any other output.
+          outgoingConnections:
+            - output->"Chat" -E34xU4Fhy1WW27UPGsqE/prompt
+          visualData: 1898.8482845873123/485.61700594206786/330/17
+        '[wFx9ceU8brvJ4miVLHGbO]:graphInput "Graph Input"':
+          data:
+            dataType: object[]
+            id: all_tasks
+            useDefaultValueInput: false
+          outgoingConnections:
+            - data->"If" 1deHEinupUk_kHuI_JmZx/if
+            - data->"If" 1deHEinupUk_kHuI_JmZx/value
+            - data->"If/Else" XXp_d02RvHNsahK5xh81n/if
+          visualData: -719.1151648218831/1015.2244028819742/330/30
+        '[xnqnn0Cl_t6EjjVI1tLCN]:graphOutput "Graph Output"':
+          data:
+            dataType: object[]
+            id: new_tasks
+          visualData: 3777.2818800657237/655.1720324733549/330/29
+    piv835DMjVCy0QyeTAEqV:
+      metadata:
+        description: ""
+        id: piv835DMjVCy0QyeTAEqV
+        name: Prioritization Agent
+      nodes: {}
+  metadata:
+    description: ""
+    id: 7fvHB3hQMdopEpnfa4heE
+    title: Untitled Project
+  plugins: []
